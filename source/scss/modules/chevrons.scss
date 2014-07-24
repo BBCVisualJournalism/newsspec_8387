@@ -1,0 +1,10 @@
+.carousel_nav,
+.main--carousel .introduction .introduction-textwrapper__launcher_icon {
+    background-image: url('../img/chevron_right.png');
+    background-repeat: no-repeat;
+}
+
+.carousel_nav_container--small .carousel_nav--prev,
+.ltr .carousel_nav_container--large .carousel_nav--prev {
+    background-image: url('../img/chevron_left.png');
+}
