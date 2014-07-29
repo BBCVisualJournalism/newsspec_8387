@@ -100,6 +100,10 @@ define(['lib/news_special/bootstrap', 'Carousel_Small', 'ElementMeasurer', 'Wind
                     Carousel.update();
                 }
             });
+
+            news.pubsub.on('carousel:loaded', function () {
+                WindowResizeEvent.trigger(); // required to fix small nav in rtl languages on ipad
+            });
         },
 
         triggerCarouselView: function () {
@@ -180,19 +184,22 @@ define(['lib/news_special/bootstrap', 'Carousel_Small', 'ElementMeasurer', 'Wind
 
         resizeContainer: function (viewportWidth) {
             var Carousel = this;
+            
+            news.$('.main--carousel--loaded').removeClass('main--carousel--loaded');
             Carousel.setContainerWidth(viewportWidth);
             Carousel.movePanels();
 
             // height is adjusted when carousel_large__item max-width is changed, so only calculate this HERE!
             setTimeout(function () {
                 Carousel.recalculateContainerHeight();
+                news.$('.main--carousel').addClass('main--carousel--loaded');
             }, 50);
         },
 
         setContainerWidth: function (viewportWidth) {
             var maxWidth = this.settings.maxWidth,
                 width    = (viewportWidth > maxWidth) ? maxWidth : viewportWidth,
-                containerWidth = width * (this.numberOfPanels + 1); // +1 to allow for padding etc
+                containerWidth = width * (this.numberOfPanels + 4); // +4 to allow for padding etc
 
             news.$('.main--carousel .carousel_large__item').css('max-width', width + 'px');
             news.$('.main--carousel .carousel_large').css('width', containerWidth + 'px');

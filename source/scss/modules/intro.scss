@@ -50,3 +50,17 @@
 .main--carousel .introduction--clicked {
 	display: none;
 }
+
+// don't want transition effects until the carousel has loaded
+// otherwise we get sickly spinning effects in right-to-left as it
+// whizzes along a couple of thousand pixels!
+.main--carousel--loaded {
+	
+    .carousel_large {
+    	transition: left 0.7s;
+    }
+
+    .carousel_small{
+    	transition: left 1s;
+    }
+}

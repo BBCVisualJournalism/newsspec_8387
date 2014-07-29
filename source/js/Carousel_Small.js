@@ -9,9 +9,10 @@ define(['lib/news_special/bootstrap', 'WorldService'], function (news, WorldServ
     * @alias module:Carousel_Small
     */
     var SmallCarousel = function () {
-        this.leftmostItem  = 1;
-        this.numberOfLinks = 0;
-        this.navItemWidth  = 0;
+        this.leftmostItem    = 1;
+        this.thumbsOnDisplay = 0;
+        this.numberOfLinks   = 0;
+        this.navItemWidth    = 0;
     };
 
     SmallCarousel.prototype = {
@@ -58,6 +59,7 @@ define(['lib/news_special/bootstrap', 'WorldService'], function (news, WorldServ
                 SmallCarousel.navItemWidth = news.$('.carousel_small__item').first().outerWidth();
                 SmallCarousel.subscribeToEvents();
                 SmallCarousel.highlightSelectedPanel(SmallCarousel.leftmostItem);
+                SmallCarousel.thumbsOnDisplay = SmallCarousel.rightmostItem();
                 SmallCarousel.move('left');// ensure we start at the right place
                 news.pubsub.emit('carousel:loaded');
             });
@@ -103,13 +105,21 @@ define(['lib/news_special/bootstrap', 'WorldService'], function (news, WorldServ
         },
 
         move: function (direction) {
-            var rightmostItem = this.rightmostItem();
+            var rightmostItem = this.rightmostItem(),
+                maximumLeftmostItem = (this.numberOfLinks - this.thumbsOnDisplay) + 1;
 
             if (direction === 'right' && rightmostItem < this.numberOfLinks) {
                 this.leftmostItem = rightmostItem + 1;
+                if (this.leftmostItem > maximumLeftmostItem) {
+                    this.leftmostItem = maximumLeftmostItem;
+                }
             }
             else if (direction === 'left') {
-                this.leftmostItem = 1;
+                this.leftmostItem = this.leftmostItem - this.thumbsOnDisplay;
+
+                if (this.leftmostItem < 1) {
+                    this.leftmostItem = 1;
+                }
             }
 
             this.doTheMove();
