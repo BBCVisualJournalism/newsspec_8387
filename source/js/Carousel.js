@@ -144,17 +144,16 @@ define(['lib/news_special/bootstrap', 'Carousel_Small', 'ElementMeasurer', 'Wind
         },
 
         movePanels: function () {
-            var shiftLeftNItems = this.panelNumber,
-                offset;
+            var offset;
 
             if (this.currentView === 'carousel') {
+
+                offset = ElementMeasurer.totalWidthOfFirstNItems('.carousel_large__item', this.panelNumber);
+
                 if (WorldService.isRightToLeft()) {
-                    // need to flip the offset.
-                    // I have to admit, there was a bit of trial and error to get this working.
-                    shiftLeftNItems = (this.numberOfPanels - this.panelNumber) + 2;
+                    offset = news.$('.carousel_large').outerWidth() - offset - (news.$('.carousel_large__item').first().outerWidth());
                 }
 
-                offset = ElementMeasurer.totalWidthOfFirstNItems('.carousel_large__item', shiftLeftNItems);
                 news.$('.carousel_large').css('left', '-' + offset + 'px');
                 this.showCurrentPanel();
             }

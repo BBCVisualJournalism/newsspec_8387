@@ -1,5 +1,7 @@
 <div class="introduction">
 
+	<div class="introduction-clickable"><%= obj['clickable'] %></div>
+
 	<noscript>
 		<img class="introduction-image" src="<%= obj.pathStatic %>/<%= obj.vocab_dir %><%= introduction_image_src %>" alt="<%= introduction_image_alt %>" width="620" height="360"  />
 	</noscript>

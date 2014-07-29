@@ -17,7 +17,7 @@
 				}
 		%>
 
-			<li class="carousel_small__item" style="background: url(<%= obj.pathStatic %>/<%= obj.vocab_dir %><%= getProperty(panelNumber, 'thumb_image') %>)">
+			<li class="carousel_small__item" style="background-image: url(<%= obj.pathStatic %>/<%= obj.vocab_dir %><%= getProperty(panelNumber, 'thumb_image') %>)">
 				<a class="carousel_small__item-link" href="#">
 					<span class="carousel_small__item-caption">
 						<%= getProperty(panelNumber, 'thumb_caption') %>

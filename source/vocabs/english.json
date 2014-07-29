@@ -1,4 +1,5 @@
 {
+    "clickable": "Clickable",
     "introduction_headline": "Timeline title",
     "introduction_blurb": "Timeline blurb. This appears below the Timeline title and is usually a small paragraph in length.",
     "introduction_image_src": "/img/640/_intro.jpg",
