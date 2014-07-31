@@ -60,6 +60,20 @@
 	}
 }
 
+// world service rtl version
+.rtl .main--carousel .introduction {
+	.introduction-textwrapper__launcher_icon {
+		right: auto;
+		left: 1%;
+		top: 0;
+		background-image: url('../img/chevron_left.png');
+	}
+
+	.introduction-textwrapper__text {
+		padding: 0 10px 0 50px;
+	}
+}
+
 .main--carousel .introduction--clicked {
 	display: none;
 }
